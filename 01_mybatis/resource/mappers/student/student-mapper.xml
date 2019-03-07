@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace=""/>
+<mapper namespace="student">
+	<!-- resultType은 parameterType과 비슷하다 -->
+	<!-- resultMap이란 : 개발자가 만든 하나의 vo 객체 라고 보면 된다. join으로 늘어난 컬럼을 유동적으로 조작 가능? -->
+	<select id="selectCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+
+	<insert id="insertStudent">
+		INSERT INTO MEMBER VALUES(
+		'user01','user01','유병승','M','19','prince0324@naver.com','01036446259','경기도시흥시','개그',SYSDATE
+		)
+	</insert>
+
+	<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. -->
+	<!-- $ : 파라미터로 던저준 값의 자료형의 형식과 상관없이 그냥 넣는다. -->
+	<!-- 파라미터로 기본 자료형이 넘어올 경우 parameterType을 따로 지정 안해도 된다. -->
+	<!-- <insert id="insertName" parameterType="string"> -->
+	<insert id="insertName" parameterType="string">
+		INSERT INTO MEMBER VALUES(
+		'user67','user67',#{name},'M','19','prince0324@naver.com','01036446259','경기도시흥시','개그',SYSDATE
+		)
+	</insert>
+	<insert id="insertAll" parameterType="student">
+		INSERT INTO MEMBER VALUES(
+		#{memberId}, #{memberPwd}, #{memberName}, #{gender}, #{age}, #{email}, #{phone},
+		#{address}, #{hobby}, SYSDATE
+		)
+	</insert>
+	<insert id="insertMap" parameterType="map">
+		INSERT INTO MEMBER VALUES(
+		#{id}, #{pw}, #{name}, #{gender}, #{age}, #{email}, #{phone}, #{address},
+		#{hobby}, SYSDATE
+		)
+	</insert>
 </mapper>

@@ -12,9 +12,9 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<a href="${path }/mybatis.do">첫 마이바티스</a>
-	<a href="${path }/inputName.do">이름만 등록</a>
-	<a href="${path }/inputMember.do">학생등록</a>
-	<a href="${path }/selectCount.do">학생수조회</a>
+	<form action="${pageContext.request.contextPath }/inputNameEnd.do" method="post">
+		<input name="name" type="text"/>
+		<input type="submit" value="입력"/>
+	</form>
 </body>
 </html>

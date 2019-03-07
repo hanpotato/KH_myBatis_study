@@ -1,29 +1,23 @@
 package com.mybatis.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mybatis.model.service.MybatisService;
-import com.mybatis.model.service.MybatisServiceImpl;
-
 /**
- * Servlet implementation class MybatisTestServlet
+ * Servlet implementation class InputNameServlet
  */
-@WebServlet("/mybatis.do")
-public class MybatisTestServlet extends HttpServlet {
+@WebServlet("/inputName.do")
+public class InputNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private MybatisService service = new MybatisServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MybatisTestServlet() {
+    public InputNameServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +26,7 @@ public class MybatisTestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int result = service.insertStudent();
-		
-		//인코딩
-		response.setContentType("text/html;charset=UTF-8");
-		
-		response.getWriter().append(result>0?"입력성공":"입력실패");
-		
-		
+		request.getRequestDispatcher("/views/student/inputName.jsp").forward(request, response);
 	}
 
 	/**

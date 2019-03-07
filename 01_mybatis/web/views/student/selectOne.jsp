@@ -12,9 +12,9 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<a href="${path }/mybatis.do">첫 마이바티스</a>
-	<a href="${path }/inputName.do">이름만 등록</a>
-	<a href="${path }/inputMember.do">학생등록</a>
-	<a href="${path }/selectCount.do">학생수조회</a>
+	<div id="student-container">
+		<h2>학생정보검색</h2>
+		<p>총 학생수는 ${count }명 입니다.</p>
+	</div>
 </body>
 </html>
