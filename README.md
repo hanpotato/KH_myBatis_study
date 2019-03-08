@@ -1,6 +1,3 @@
-# KH_myBatis_study
-<hr>
-
 ## KH MyBatis ppt
 [1. Framework.pdf](https://github.com/hanpotato/KH_myBatis_study/files/2941185/1.Framework.pdf)
 <br>
