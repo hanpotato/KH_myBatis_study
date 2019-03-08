@@ -5,7 +5,7 @@
 <br>
 <hr>
 
-## oracle SQL DB
+## Oracle SQL DB
 [studentDB.zip](https://github.com/hanpotato/KH_myBatis_study/files/2944298/studentDB.zip)
 <br>
 <hr>
