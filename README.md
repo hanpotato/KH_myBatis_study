@@ -24,6 +24,9 @@ key : -//mybatis.org//DTD Mapper 3.0//EN
 <hr>
 
 ## Oracle SQL DB
+ - username : student
+ - password : student
+
 [studentDB.zip](https://github.com/hanpotato/KH_myBatis_study/files/2944298/studentDB.zip)
 <br>
 <hr>
