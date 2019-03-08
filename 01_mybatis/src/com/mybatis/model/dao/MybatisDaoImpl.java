@@ -1,12 +1,55 @@
 package com.mybatis.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.mybatis.model.vo.Rstudent;
 import com.mybatis.model.vo.Student;
 
 public class MybatisDaoImpl implements MybatisDao {
+
+	@Override
+	public List<Map<String, String>> selectTotalMap(SqlSession session) {
+		return session.selectList("student.totalMap");
+
+	}
+/*
+	@Override
+	public List<Rstudent> selectTotal(SqlSession session) {
+		return session.selectList("student.total");
+	}
+*/
+	@Override
+	public List selectTotal(SqlSession session) {
+		return session.selectList("student.total");
+	}
+
+	@Override
+	public int delete(SqlSession session, int no) {
+		return session.delete("student.delete", no);
+	}
+
+	@Override
+	public int DelOne(SqlSession session, int no) {
+		return session.delete("student.deleteOne", no);
+	}
+
+	@Override
+	public int selectCount1(SqlSession session) {
+		return session.selectOne("student.selectCount1");
+	}
+
+	@Override
+	public Map selectMap(SqlSession session, int no) {
+		return session.selectOne("student.selectMap",no);
+	}
+
+	@Override
+	public Rstudent selectOne(SqlSession session, int no) {
+		return session.selectOne("student.selectOne",no);
+	}
 
 	@Override
 	public int selectCount(SqlSession session) {

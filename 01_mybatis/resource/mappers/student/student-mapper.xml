@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- root태그 -->
 <mapper namespace="student">
+	
+	<resultMap type="rstudent" id="rstudentMap">
+	<!-- <resultMap type="map" id="rstudentMap"> -->
+		<result column = "student_no" property="studentNo"/>
+		<result column = "student_name" property="studentName"/>
+		<result column = "student_tel" property="studentTel"/>
+		<result column = "student_email" property="studentEmail"/>
+		<result column = "student_addr" property="studentAddr"/>
+	</resultMap>
+	
+	<!-- map값으로 불러올때 컬럼명으로 지정해서 불러와야 하지만, resultMap으로 미리 변환 형식을 써주면 *로 불러오는것도 가능하다. -->
+	<select id="total" resultMap="rstudentMap">
+		SELECT * FROM STUDENT ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="totalMap" resultType="map">
+		SELECT * FROM STUDENT ORDER BY REG_DATE DESC
+	</select>
+	
+	<!-- resultType이 list로 들어가면 에러가 뜬다. 실질적으로 받는 vo객체로 선언해 줘야 한다. -->
+	<!-- <select id="total" resultType="list"> -->
+	<!-- 
+	<select id="total" resultType="rstudent">
+		SELECT STUDENT_NO AS STUDENTNO,
+			STUDENT_NAME AS STUDENTNAME,
+			STUDENT_TEL AS STUDENTTEL,
+			STUDENT_EMAIL AS STUDENTEMAIL,
+			STUDENT_ADDR AS STUDENTADDR,
+			REG_DATE
+		FROM STUDENT ORDER BY REG_DATE DESC
+	</select>
+	 -->
+	
+	<delete id="delete" parameterType="_int">
+		DELETE FROM STUDENT WHERE STUDENT_NO = #{NO}
+	</delete>
+	
+	<!-- vo객체랑 DB명칭이랑 일치시키거나 DB에서 as로 맞춰줘야 한다. 그래야 자료가 제대로 출력됨 --> 
+	<select id="selectOne" parameterType="_int" resultType="rstudent">
+		SELECT STUDENT_NO AS STUDENTNO,
+			STUDENT_NAME AS STUDENTNAME,
+			STUDENT_TEL AS STUDENTTEL,
+			STUDENT_EMAIL AS STUDENTEMAIL,
+			STUDENT_ADDR AS STUDENTADDR,
+			REG_DATE
+		 FROM STUDENT WHERE STUDENT_NO = #{no}
+	</select>
+	
+	<select id="selectMap" resultType="map">
+		SELECT * FROM STUDENT WHERE STUDENT_NO=#{no}
+	</select>
+
 	<!-- resultType은 parameterType과 비슷하다 -->
 	<!-- resultMap이란 : 개발자가 만든 하나의 vo 객체 라고 보면 된다. join으로 늘어난 컬럼을 유동적으로 조작 가능? -->
 	<select id="selectCount" resultType="_int">
@@ -34,4 +88,16 @@
 		#{hobby}, SYSDATE
 		)
 	</insert>
+	
+		
+	<!-- 연습문제로 인해 추가한 구문 -->
+	<delete id="deleteOne">
+		DELETE FROM STUDENT WHERE STUDENT_NO = #{NO}
+	</delete>
+	
+	<select id="selectCount1" resultType="_int">
+		SELECT COUNT(*) FROM STUDENT
+	</select>
+	
+	
 </mapper>

@@ -1,6 +1,7 @@
 package com.mybatis.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,12 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mybatis.model.service.MybatisService;
 import com.mybatis.model.service.MybatisServiceImpl;
+import com.mybatis.model.vo.Rstudent;
 
 /**
- * Servlet implementation class SelectStudentCountServlet
+ * Servlet implementation class SelectStudentSearchServlet
  */
-@WebServlet("/selectCount.do")
-public class SelectStudentCountServlet extends HttpServlet {
+@WebServlet("/student/selectOne.do")
+public class SelectStudentSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MybatisService service = new MybatisServiceImpl();
@@ -22,7 +24,7 @@ public class SelectStudentCountServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectStudentCountServlet() {
+    public SelectStudentSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +34,19 @@ public class SelectStudentCountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int result = service.selectCount();
-		System.out.println(result);
+		int no = Integer.parseInt(request.getParameter("no"));
 		
-		//연습 문제
-		int result1 = service.selectCount1();
-		
-		request.setAttribute("count", result);
-		request.setAttribute("count1", result1);
+		//vo객체를 이용해서 불러오기
+		Rstudent s = service.selectOne(no);
+		System.out.println(s);
+		request.setAttribute("map", s);
 		request.getRequestDispatcher("/views/student/selectOne.jsp").forward(request, response);
+		
+		//map방식으로 불러오기
+		//Map map = service.selectMap(no);
+		//System.out.println(map);
+		//request.setAttribute("map", map);
+		//request.getRequestDispatcher("/views/student/selectOne.jsp").forward(request, response);
 	}
 
 	/**

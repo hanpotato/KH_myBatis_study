@@ -1,7 +1,9 @@
 package com.mybatis.model.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.mybatis.model.vo.Rstudent;
 import com.mybatis.model.vo.Student;
 
 public interface MybatisService {
@@ -12,4 +14,12 @@ public interface MybatisService {
 	int insertStudent(Student s);
 	int insertStudent(Map<String,Object> map);
 	int selectCount();
+	int selectCount1();
+	Rstudent selectOne(int no);
+	Map selectMap(int no);
+	int DelOne(int no);
+	int delete(int no);
+	/*List<Rstudent> selectTotal();*/
+	List selectTotal();
+	List<Map<String,String>> selectTotalMap();
 }

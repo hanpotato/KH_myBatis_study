@@ -1,6 +1,9 @@
 package com.mybatis.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +14,10 @@ import com.mybatis.model.service.MybatisService;
 import com.mybatis.model.service.MybatisServiceImpl;
 
 /**
- * Servlet implementation class SelectStudentCountServlet
+ * Servlet implementation class StudentTotalServlet
  */
-@WebServlet("/selectCount.do")
-public class SelectStudentCountServlet extends HttpServlet {
+@WebServlet("/student/total.do")
+public class StudentTotalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MybatisService service = new MybatisServiceImpl();
@@ -22,7 +25,7 @@ public class SelectStudentCountServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectStudentCountServlet() {
+    public StudentTotalServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +35,19 @@ public class SelectStudentCountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int result = service.selectCount();
-		System.out.println(result);
+		/*List<Rstudent> list = service.selectTotal();*/
 		
-		//연습 문제
-		int result1 = service.selectCount1();
+		//resultMap 이용
+		List list = service.selectTotal();
 		
-		request.setAttribute("count", result);
-		request.setAttribute("count1", result1);
-		request.getRequestDispatcher("/views/student/selectOne.jsp").forward(request, response);
+		
+		//map으로 받을 경우
+		/*List<Map<String,String>> list = service.selectTotalMap();*/
+		
+		System.out.println(list);
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/student/selectList.jsp").forward(request, response);
 	}
 
 	/**
