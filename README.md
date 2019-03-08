@@ -10,7 +10,7 @@
 <br>
 <hr>
 
-## myBatis 이클립스 설정
+## MyBatis 이클립스 설정
 <pre>
 메뉴 - Window - Preferences - XML - XML Catalog - User Specified Entries 에 아래 항목 add
 location : http://mybatis.org/dtd/mybatis-3-config.dtd
