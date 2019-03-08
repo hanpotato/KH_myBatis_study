@@ -3,6 +3,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.mybatis.model.vo.Student" alias="student"/>
+		<typeAlias type="com.mybatis.model.vo.Rstudent" alias="rstudent"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
