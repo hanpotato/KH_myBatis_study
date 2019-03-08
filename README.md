@@ -1,7 +1,7 @@
 ## Environment
  - jre1.8.0_192
  - Eclipse Java EE IDE for Web Developers. Version: 2018-09 (4.9.0)
- - Oracle IDE  Version: 17.2.0.188
+ - Oracle SQL Developer. Version: 17.2.0.188
 <hr>
 
 ## MyBatis 이클립스 설정
