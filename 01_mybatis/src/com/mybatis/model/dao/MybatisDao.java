@@ -23,4 +23,7 @@ public interface MybatisDao {
 	/*List<Rstudent> selectTotal(SqlSession session);*/
 	List selectTotal(SqlSession session);
 	List<Map<String, String>> selectTotalMap(SqlSession session);
+	List<Student> memberAll(SqlSession session);
+	List<Map> memberAllMap(SqlSession session);
+	List<Map> memberSearch(SqlSession session, String keyword);
 }

@@ -13,6 +13,22 @@
 		<result column = "student_addr" property="studentAddr"/>
 	</resultMap>
 	
+	<select id="memberSearch" parameterType="string" resultType="map">
+		SELECT * FROM MEMBER WHERE MEMBER_NAME LIKE '%'||#{keyword }||'%'
+	</select>
+	
+	<select id="memberAllMap" resultType="map">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="memberAll" resultType="student">
+		SELECT MEMBER_ID AS memberId,
+			MEMBER_PWD AS memberPwd,
+			MEMBER_NAME AS memberName,
+			GENDER, AGE, EMAIL, PHONE, ADDRESS, HOBBY,
+			ENROLL_DATE AS enrollDate FROM MEMBER
+	</select>
+	
 	<!-- map값으로 불러올때 컬럼명으로 지정해서 불러와야 하지만, resultMap으로 미리 변환 형식을 써주면 *로 불러오는것도 가능하다. -->
 	<select id="total" resultMap="rstudentMap">
 		SELECT * FROM STUDENT ORDER BY REG_DATE DESC

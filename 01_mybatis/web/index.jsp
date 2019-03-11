@@ -16,5 +16,7 @@
 	<a href="${path }/inputName.do">이름만 등록</a>
 	<a href="${path }/inputMember.do">학생등록</a>
 	<a href="${path }/selectCount.do">학생수조회</a>
+	<a href="${path }/selectMember.do">member조회</a>
+	<a href="${path }/selectMemberMap.do">memberMap조회</a>
 </body>
 </html>

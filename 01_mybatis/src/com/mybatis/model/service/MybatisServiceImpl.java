@@ -15,6 +15,27 @@ import com.mybatis.model.vo.Student;
 public class MybatisServiceImpl implements MybatisService {
 
 	@Override
+	public List<Map> memberSearch(String keyword) {
+		SqlSession session = getSession();
+		List<Map> list = dao.memberSearch(session,keyword);
+		session.close();
+		return list;
+	}
+	@Override
+	public List<Map> memberAllMap() {
+		SqlSession session = getSession();
+		List<Map> list = dao.memberAllMap(session);
+		session.close();
+		return list;
+	}
+	@Override
+	public List<Student> memberAll() {
+		SqlSession session = getSession();
+		List<Student> list = dao.memberAll(session);
+		session.close();
+		return list;
+	}
+	@Override
 	public List<Map<String, String>> selectTotalMap() {
 		SqlSession session = getSession();
 		List<Map<String, String>> result = dao.selectTotalMap(session);
@@ -33,7 +54,7 @@ public class MybatisServiceImpl implements MybatisService {
 	@Override
 	public List selectTotal() {
 		SqlSession session = getSession();
-		List<Rstudent> result = dao.selectTotal(session);
+		List result = dao.selectTotal(session);
 		session.close();
 		return result;
 	}

@@ -22,4 +22,7 @@ public interface MybatisService {
 	/*List<Rstudent> selectTotal();*/
 	List selectTotal();
 	List<Map<String,String>> selectTotalMap();
+	List<Student> memberAll();
+	List<Map> memberAllMap();
+	List<Map> memberSearch(String keyword);
 }
