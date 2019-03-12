@@ -21,12 +21,13 @@
 		SELECT * FROM MEMBER
 	</select>
 	
-	<select id="memberAll" resultType="student">
-		SELECT MEMBER_ID AS memberId,
+	<select id="memberAll" resultType="map">
+<!-- 		SELECT MEMBER_ID AS memberId,
 			MEMBER_PWD AS memberPwd,
 			MEMBER_NAME AS memberName,
 			GENDER, AGE, EMAIL, PHONE, ADDRESS, HOBBY,
-			ENROLL_DATE AS enrollDate FROM MEMBER
+			ENROLL_DATE AS enrollDate FROM MEMBER -->
+			SELECT * FROM MEMBER
 	</select>
 	
 	<!-- map값으로 불러올때 컬럼명으로 지정해서 불러와야 하지만, resultMap으로 미리 변환 형식을 써주면 *로 불러오는것도 가능하다. -->
@@ -79,12 +80,12 @@
 
 	<insert id="insertStudent">
 		INSERT INTO MEMBER VALUES(
-		'user01','user01','유병승','M','19','prince0324@naver.com','01036446259','경기도시흥시','개그',SYSDATE
+		'user56','user56','유병승','M','19','prince0324@naver.com','01036446259','경기도시흥시','개그',SYSDATE
 		)
 	</insert>
 
-	<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. -->
-	<!-- $ : 파라미터로 던저준 값의 자료형의 형식과 상관없이 그냥 넣는다. -->
+	<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. PreparedStatement 방식 -->
+	<!-- $ : 파라미터로 던저준 값의 자료형의 형식과 상관없이 그냥 넣는다. Statement 방식 -->
 	<!-- 파라미터로 기본 자료형이 넘어올 경우 parameterType을 따로 지정 안해도 된다. -->
 	<!-- <insert id="insertName" parameterType="string"> -->
 	<insert id="insertName" parameterType="string">

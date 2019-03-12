@@ -31,7 +31,8 @@
 		</tr>
 		<c:if test="${not empty list }">
 			<c:forEach var="m" items="${list }">
-<%-- 
+			
+				<%-- 
 				<tr>
 					<td>${m['memberId'] }</td>
 					<td>${m['memberPwd'] }</td>
@@ -45,6 +46,7 @@
 					<td>${m['enrollDate'] }</td>
 				</tr>
 				 --%>
+				
 				<tr>
 					<td>${m['MEMBER_ID'] }</td>
 					<td>${m['MEMBER_PWD'] }</td>
@@ -57,6 +59,7 @@
 					<td>${m['HOBBY'] }</td>
 					<td>${m['ENROLL_DATE'] }</td>
 				</tr>
+				
 				
 			</c:forEach>
 		</c:if>
