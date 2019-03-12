@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="emp">
+	<select id="selectAll" resultType="map">
+		SELECT * FROM KH.EMPLOYEE
+	</select>
+	
+	<select id="selectSearch" parameterType="map" resultType="map">
+		SELECT * FROM KH.EMPLOYEE WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+		<!-- $ : 표시를 넣는 건 '' 표시가 필요없는 변수를 넣을때 써야한다 -->
+		<!-- # : 표시를 넣는 건 '' 표시가 필요한 변수를 넣을때 써야한다 -->
+		<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. PreparedStatement 방식 -->
+		<!-- $ : 파라미터로 던저준 값의 자료형의 형식과 상관없이 그냥 넣는다. Statement 방식 -->
+	</select>
+</mapper>
