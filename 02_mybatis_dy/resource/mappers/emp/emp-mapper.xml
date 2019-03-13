@@ -6,10 +6,86 @@
 	</select>
 	
 	<select id="selectSearch" parameterType="map" resultType="map">
-		SELECT * FROM KH.EMPLOYEE WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+	
+		<!-- SELECT * FROM KH.EMPLOYEE WHERE ${searchType} LIKE '%'||#{keyword}||'%' -->
 		<!-- $ : 표시를 넣는 건 '' 표시가 필요없는 변수를 넣을때 써야한다 -->
 		<!-- # : 표시를 넣는 건 '' 표시가 필요한 변수를 넣을때 써야한다 -->
-		<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. PreparedStatement 방식 -->
 		<!-- $ : 파라미터로 던저준 값의 자료형의 형식과 상관없이 그냥 넣는다. Statement 방식 -->
+		<!-- # : 파라미터로 던저준 값의 자료형의 형식을 자동적으로 맞춰준다. PreparedStatement 방식 -->
+		
+		SELECT A.*, J.JOB_NAME FROM
+			(SELECT A.*, CASE
+				WHEN SUBSTR(EMP_NO,8,1) IN (1,3) THEN 'M' ELSE 'F' END GENDER FROM KH.EMPLOYEE A) A
+			LEFT JOIN KH.JOB J ON A.JOB_CODE=J.JOB_CODE
+			WHERE 1=1
+		
+		<if test="searchType != null and searchType != ''">
+			<if test="keyword != null">
+				AND ${searchType} LIKE '%'||#{keyword}||'%'
+			</if>
+		</if>
+		
+		<if test="gender != null and gender != ''">
+			AND GENDER=#{gender}
+		</if>
+		
+		<if test="salary != null and salary != ''">
+		
+			<!-- 
+			<if test="sal eq 'sal_le'">
+				AND SALARY <![CDATA[<=]]> #{salary}
+				CDATA[] 안의 값은 xml에서 쓰지 않고 sql에 쓸 수 있게끔 돕는 구문이다
+				
+			</if>
+			<if test="sal eq 'sal_ge'">
+				AND SALARY <![CDATA[>=]]> #{salary}
+			</if>
+			 -->
+			 
+			<choose>
+				<when test="sal eq 'sal_Le'">
+					AND SALARY <![CDATA[<=]]> #{salary}
+				</when>
+				<when test="sal eq 'sal_ge'">
+					AND SALARY <![CDATA[>=]]> #{salary}
+				</when>
+				<!-- 나머지 조건 otherwise -->
+				<otherwise>
+				</otherwise>
+			</choose>
+		</if>
+		
+		<if test="hiredate!=null and hiredate!=''">
+			<choose>
+				<when test="hdate eq 'h_ge'">
+					AND TO_DATE(TO_CHAR(HIRE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')
+					<![CDATA[>=]]> TO_DATE(#{hiredate},'YYYY-MM-DD')
+				</when>
+				<when test="hdate eq 'h_le'">
+					AND TO_DATE(TO_CHAR(HIRE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')
+					<![CDATA[<=]]> TO_DATE(#{hiredate},'YYYY-MM-DD')
+				</when>
+			</choose>
+		</if>
+		
+		<if test="job!=null and job!=''">
+			AND J.JOB_CODE IN
+			<foreach collection="job" item="j" index="i" open="(" close=")" separator=",">
+			<!-- open은 foreach 돌기 시작할때 들어가는 문구 -->
+			<!-- close는 foreach 도는게 끝날때 들어가는 문구 -->
+			<!-- separator는 foreach 하나 돌때마다 들어가는 문구 -->
+			#{j}
+			</foreach>
+		</if>
 	</select>
+	
+	<select id="selectCount" resultType="_int">
+		SELECT COUNT(*) FROM KH.EMPLOYEE
+	</select>
+	
+	<select id="selectPaging" resultType="map">
+		<!-- SELECT * FROM (SELECT ROWNUM AS RUM FROM SELECT.....) WHERE RNUM BETWEEN ~~~ -->
+		SELECT * FROM KH.EMPLOYEE
+	</select>
+	
 </mapper>

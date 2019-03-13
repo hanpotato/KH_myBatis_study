@@ -13,6 +13,6 @@
 </head>
 <body>
 	<a href="${path }/empSearch.do">기본동적쿼리</a><br>
-
+	<a href="${path }/paging.do">페이징처리</a><br>
 </body>
 </html>

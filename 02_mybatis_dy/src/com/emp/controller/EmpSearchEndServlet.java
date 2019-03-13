@@ -38,9 +38,16 @@ public class EmpSearchEndServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String searchType = request.getParameter("searchType");
 		String keyword = request.getParameter("keyword");
-		Map<String,String> map = new HashMap();
+		/*Map<String,String> map = new HashMap();*/
+		Map<String,Object> map = new HashMap();
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
+		map.put("gender", request.getParameter("gender"));
+		map.put("salary", request.getParameter("salary"));
+		map.put("sal", request.getParameter("sal"));
+		map.put("hiredate", request.getParameter("hiredate"));
+		map.put("hdate", request.getParameter("hdate"));
+		map.put("job", request.getParameterValues("job"));
 		
 		List<Map> list = service.selectSearch(map);
 		
